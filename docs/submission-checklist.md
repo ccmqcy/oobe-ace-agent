@@ -6,8 +6,8 @@
 - Demo video URL.
 - X post tagging `@OOBEonSol` and `@AceDataCloud`.
 - Superteam submission link.
-- Latest `runs/*/trace.json`.
-- Latest `runs/*/report.md`.
+- Public evidence: `docs/live-evidence-summary.md`, `docs/live-x402-report.md`, and `docs/sap-agent-metadata.json`.
+- Local-only backup evidence: latest `runs/*/trace.json` and `runs/*/report.md`.
 - Proof of live AceDataCloud usage.
 - Proof of x402 payment or settlement from `runs/x402-*`.
 - SAP agent registration or explorer link.
