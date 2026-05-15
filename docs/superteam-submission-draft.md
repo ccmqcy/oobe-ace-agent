@@ -23,7 +23,7 @@ Project: AceIntelAgent
 I built a submission-oriented autonomous agent MVP for the OOBE x Ace Data Cloud bounty.
 
 What it demonstrates:
-- SAP-style tool discovery through a generated agent manifest.
+- SAP-style tool discovery through a generated agent manifest. Final submission should also include the SAP mainnet registration signature once registered.
 - Live AceDataCloud service usage across SERP search, WebExtrator extraction, and OpenAI-compatible chat synthesis.
 - Browser-based x402 payments through MetaMask from a Base burner wallet.
 - A complete trigger -> service calls -> paid settlement -> report flow.
@@ -37,10 +37,14 @@ Live x402 evidence:
 
 Public-safe evidence files:
 - docs/live-evidence-summary.md
-- runs/x402-2026-05-15T04-15-00-781Z/report.md
+- docs/live-x402-report.md
+- docs/sap-agent-metadata.json
 - docs/demo-script.md
 
 The raw trace is kept local because it may include raw third-party page content and payment metadata. The public repo contains the implementation, browser runner, verification scripts, and sanitized evidence notes.
+
+Remaining before final submission:
+- SAP mainnet registration signature or explorer link.
 ```
 
 ## Optional Eligibility Answers

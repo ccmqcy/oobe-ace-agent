@@ -21,7 +21,7 @@ The agent demonstrates an autonomous workflow:
 
 Mock mode is ready for local verification and demo scripting. Live AceDataCloud token mode has been verified, and the browser MetaMask x402 flow has also been verified with a Base burner wallet.
 
-SAP registration is prepared as a manifest/validation step. Real on-chain registration still needs a Synapse RPC API key and a fresh Solana burner keypair.
+SAP registration is prepared as a manifest/validation step. The final bounty submission still needs real SAP mainnet registration with a Synapse RPC endpoint and a fresh Solana burner keypair.
 
 ## Install
 
@@ -117,6 +117,8 @@ Use these files after live verification:
 - `docs/demo-script.md`
 - `docs/submission-checklist.md`
 - `docs/live-evidence-summary.md`
+- `docs/live-x402-report.md`
+- `docs/sap-agent-metadata.json`
 - `docs/superteam-submission-draft.md`
 - latest `runs/*/report.md`
 - latest `runs/*/trace.json`

@@ -36,7 +36,8 @@ export function loadConfig(argv = process.argv.slice(2)) {
       rpcUrl: process.env.SYNAPSE_RPC_URL || '',
       keypairPath: process.env.SAP_AGENT_KEYPAIR_PATH || '',
       publicKey: process.env.SAP_AGENT_PUBLIC_KEY || '',
-      endpoint: process.env.SAP_AGENT_ENDPOINT || 'https://example.com/x402',
+      endpoint: process.env.SAP_AGENT_ENDPOINT || 'https://api.acedata.cloud',
+      agentUri: process.env.SAP_AGENT_URI || 'https://raw.githubusercontent.com/ccmqcy/oobe-ace-agent/master/docs/sap-agent-metadata.json',
     },
     submission: {
       githubRepoUrl: process.env.GITHUB_REPO_URL || '',
@@ -55,4 +56,3 @@ export function requireLiveConfig(config) {
     throw new Error('Live x402 mode requires ACE_EVM_PRIVATE_KEY for a funded burner wallet.');
   }
 }
-

@@ -15,6 +15,7 @@ export function buildSapAgentManifest(config) {
     description: 'Autonomous market-intelligence agent using SAP discovery and AceDataCloud x402-paid services.',
     protocols: ['sap', 'acedata-cloud', 'x402'],
     x402Endpoint: config.sap.endpoint,
+    agentUri: config.sap.agentUri,
     agentWallet: agentWallet.toBase58(),
     agentPda: agentPda.toBase58(),
     capabilities: [

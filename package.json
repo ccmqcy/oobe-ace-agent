@@ -9,9 +9,13 @@
     "serve": "node src/server.mjs",
     "build:browser": "esbuild src/browser-x402.mjs --bundle --format=esm --platform=browser --outfile=public/browser-x402.bundle.js",
     "x402:browser": "npm run build:browser && node src/server.mjs",
+    "sap:keypair": "node scripts/create-solana-keypair.mjs",
+    "sap:register:dry": "node scripts/register-sap-agent.mjs --dry-run",
+    "sap:register": "node scripts/register-sap-agent.mjs --send",
+    "sap:check": "node scripts/check-sap-registration.mjs",
     "verify": "node scripts/verify.mjs",
     "preview:x402": "node scripts/preview-x402-price.mjs",
-    "check": "node --check src/index.mjs && node --check src/server.mjs && node --check src/browser-x402.mjs && node --check src/ace-client.mjs && node --check src/agent-workflow.mjs && node --check src/config.mjs && node --check src/sap-registry.mjs && node --check scripts/verify.mjs && node --check scripts/preview-x402-price.mjs"
+    "check": "node --check src/index.mjs && node --check src/server.mjs && node --check src/browser-x402.mjs && node --check src/ace-client.mjs && node --check src/agent-workflow.mjs && node --check src/config.mjs && node --check src/sap-registry.mjs && node --check scripts/verify.mjs && node --check scripts/preview-x402-price.mjs && node --check scripts/create-solana-keypair.mjs && node --check scripts/register-sap-agent.mjs && node --check scripts/check-sap-registration.mjs"
   },
   "keywords": [
     "oobe",

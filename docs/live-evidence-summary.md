@@ -49,13 +49,14 @@ Use these for public submission:
 
 - GitHub repo: `https://github.com/ccmqcy/oobe-ace-agent`
 - `docs/live-evidence-summary.md`
-- `runs/x402-2026-05-15T04-15-00-781Z/report.md`
+- `docs/live-x402-report.md`
+- `docs/sap-agent-metadata.json`
 - demo video showing the browser x402 runner and MetaMask signatures
 
-Do not publish raw `trace.json` without manual review. It can include raw extracted web page content and payment metadata.
+Do not publish raw `runs/x402-2026-05-15T04-15-00-781Z/trace.json` without manual review. It can include raw extracted web page content and payment metadata.
 
 ## Remaining
 
 - Optional: record a short demo video.
-- Optional: complete real SAP/OOBE on-chain registration if a Synapse RPC API key and fresh Solana burner keypair are available.
+- Required before final bounty submission: complete real SAP/OOBE mainnet registration with a Synapse RPC endpoint and a fresh Solana burner keypair, then attach the registration signature or explorer link.
 - Required for bounty submission: X post and Superteam form submission.

@@ -1,0 +1,24 @@
+{
+  "name": "AceIntelAgent",
+  "description": "Autonomous OOBE bounty agent using SAP discovery, AceDataCloud services, and x402 payments through a Base burner wallet.",
+  "repo": "https://github.com/ccmqcy/oobe-ace-agent",
+  "bounty": "https://superteam.fun/earn/listing/autonomous-agent-bounty-oobe-ace-data-cloud",
+  "category": "Ace Data Cloud Usage via x402 facilitator",
+  "liveEvidence": {
+    "summary": "docs/live-evidence-summary.md",
+    "report": "docs/live-x402-report.md",
+    "paymentMode": "x402-browser-metamask",
+    "network": "Base",
+    "wallet": "0x8ee2967f3c2008a8a8bd77da5f736bbbad7af9e3",
+    "services": [
+      "acedata.serp.google",
+      "acedata.webextrator.extract",
+      "acedata.openai.chat.completions"
+    ],
+    "estimatedCostUsdc": "0.096643"
+  },
+  "sap": {
+    "programId": "SAPpUhsWLJG1FfkGRcXagEDMrMsWGjbky7AyhGpFETZ",
+    "registrationStatus": "pending-mainnet-registration"
+  }
+}
