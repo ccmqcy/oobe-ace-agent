@@ -1,0 +1,40 @@
+{
+  "name": "oobe-ace-agent",
+  "version": "1.0.0",
+  "description": "Autonomous SAP + AceDataCloud agent MVP for the OOBE x Ace Data Cloud Superteam bounty.",
+  "main": "src/index.mjs",
+  "scripts": {
+    "demo": "node src/index.mjs --mode mock --target \"OOBE Protocol\"",
+    "live": "node src/index.mjs --mode live --target \"OOBE Protocol\"",
+    "serve": "node src/server.mjs",
+    "build:browser": "esbuild src/browser-x402.mjs --bundle --format=esm --platform=browser --outfile=public/browser-x402.bundle.js",
+    "x402:browser": "npm run build:browser && node src/server.mjs",
+    "verify": "node scripts/verify.mjs",
+    "preview:x402": "node scripts/preview-x402-price.mjs",
+    "check": "node --check src/index.mjs && node --check src/server.mjs && node --check src/browser-x402.mjs && node --check src/ace-client.mjs && node --check src/agent-workflow.mjs && node --check src/config.mjs && node --check src/sap-registry.mjs && node --check scripts/verify.mjs && node --check scripts/preview-x402-price.mjs"
+  },
+  "keywords": [
+    "oobe",
+    "synapse",
+    "sap",
+    "acedatacloud",
+    "x402",
+    "solana",
+    "agent"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@acedatacloud/sdk": "^2026.504.2",
+    "@acedatacloud/x402-client": "^2026.507.2",
+    "@oobe-protocol-labs/synapse-client-sdk": "^2.0.6",
+    "@oobe-protocol-labs/synapse-sap-sdk": "^0.15.1",
+    "@solana/web3.js": "^1.98.4",
+    "dotenv": "^17.4.2",
+    "ethers": "^6.16.0",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
+  }
+}
