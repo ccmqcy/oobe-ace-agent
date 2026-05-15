@@ -19,7 +19,7 @@ The agent demonstrates an autonomous workflow:
 
 ## Current Status
 
-Mock mode is ready for local verification and demo scripting. Live mode is wired for AceDataCloud token or x402 payment, but should only be run with a fresh funded burner wallet and explicit approval.
+Mock mode is ready for local verification and demo scripting. Live AceDataCloud token mode has been verified, and the browser MetaMask x402 flow has also been verified with a Base burner wallet.
 
 SAP registration is prepared as a manifest/validation step. Real on-chain registration still needs a Synapse RPC API key and a fresh Solana burner keypair.
 
@@ -116,5 +116,9 @@ Use these files after live verification:
 
 - `docs/demo-script.md`
 - `docs/submission-checklist.md`
+- `docs/live-evidence-summary.md`
+- `docs/superteam-submission-draft.md`
 - latest `runs/*/report.md`
 - latest `runs/*/trace.json`
+
+Keep raw `runs/*/trace.json` local unless manually reviewed first. It can contain raw third-party page content and payment metadata. Prefer the sanitized evidence summary plus `report.md` for public submission.
