@@ -82,53 +82,52 @@ if (dryRun || existing) {
       ? 'Agent appears registered. Run npm run sap:check and attach the evidence.'
       : 'Dry run only. Fund the public key if needed, then run npm run sap:register to send the transaction.',
   }, null, 2));
-  process.exit(0);
-}
+} else {
+  if (balanceSol < minBalanceSol) {
+    throw new Error(`SAP burner balance is ${balanceSol} SOL, below SAP_MIN_BALANCE_SOL=${minBalanceSol}. Fund ${keypair.publicKey.toBase58()} first.`);
+  }
 
-if (balanceSol < minBalanceSol) {
-  throw new Error(`SAP burner balance is ${balanceSol} SOL, below SAP_MIN_BALANCE_SOL=${minBalanceSol}. Fund ${keypair.publicKey.toBase58()} first.`);
-}
+  const builder = conn.client.builder
+    .agent(registration.name)
+    .description(registration.description)
+    .agentId(registration.agentId)
+    .agentUri(registration.agentUri)
+    .x402Endpoint(registration.x402Endpoint);
 
-const builder = conn.client.builder
-  .agent(registration.name)
-  .description(registration.description)
-  .agentId(registration.agentId)
-  .agentUri(registration.agentUri)
-  .x402Endpoint(registration.x402Endpoint);
-
-for (const capability of registration.capabilities) {
-  builder.addCapability(capability.id, {
-    protocol: capability.protocolId,
-    version: capability.version,
-    description: capability.description,
+  for (const capability of registration.capabilities) {
+    builder.addCapability(capability.id, {
+      protocol: capability.protocolId,
+      version: capability.version,
+      description: capability.description,
+    });
+  }
+  for (const protocol of registration.protocols) {
+    builder.addProtocol(protocol);
+  }
+  builder.addPricingTier({
+    tierId: 'standard',
+    pricePerCall: 1000,
+    rateLimit: 30,
+    tokenType: 'usdc',
+    settlementMode: 'x402',
   });
-}
-for (const protocol of registration.protocols) {
-  builder.addProtocol(protocol);
-}
-builder.addPricingTier({
-  tierId: 'standard',
-  pricePerCall: 1000,
-  rateLimit: 30,
-  tokenType: 'usdc',
-  settlementMode: 'x402',
-});
 
-const result = await builder.register();
-const summary = {
-  ok: true,
-  dryRun: false,
-  sent: true,
-  publicKey: keypair.publicKey.toBase58(),
-  rpcUrl: redactRpc(config.sap.rpcUrl),
-  balanceSolBefore: balanceSol,
-  txSignature: result.txSignature,
-  agentPda: result.agentPda.toBase58(),
-  statsPda: result.statsPda.toBase58(),
-  registration,
-};
-await writeFile(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2));
-console.log(JSON.stringify({ ...summary, runDir }, null, 2));
+  const result = await builder.register();
+  const summary = {
+    ok: true,
+    dryRun: false,
+    sent: true,
+    publicKey: keypair.publicKey.toBase58(),
+    rpcUrl: redactRpc(config.sap.rpcUrl),
+    balanceSolBefore: balanceSol,
+    txSignature: result.txSignature,
+    agentPda: result.agentPda.toBase58(),
+    statsPda: result.statsPda.toBase58(),
+    registration,
+  };
+  await writeFile(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2));
+  console.log(JSON.stringify({ ...summary, runDir }, null, 2));
+}
 
 function parseArgs(argv) {
   const result = {};
