@@ -17,7 +17,7 @@
 - AceDataCloud account or x402-funded burner wallet.
 - Synapse RPC API key.
 - Fresh Solana burner keypair for SAP registration.
-- Minimal SOL for registration fees if mainnet registration requires it.
+- About `0.045 SOL` for SAP mainnet registration rent and fees, based on registration simulation.
 
 ## User Approval Gates
 

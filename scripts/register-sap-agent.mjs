@@ -42,7 +42,7 @@ const agentUri = manifest.agentUri || config.sap.agentUri;
 const x402Endpoint = manifest.x402Endpoint || config.sap.endpoint;
 const balanceLamports = await conn.connection.getBalance(keypair.publicKey, 'confirmed');
 const balanceSol = balanceLamports / LAMPORTS_PER_SOL;
-const minBalanceSol = Number(process.env.SAP_MIN_BALANCE_SOL || '0.01');
+const minBalanceSol = Number(process.env.SAP_MIN_BALANCE_SOL || '0.045');
 const existing = await fetchExisting(conn.client, keypair.publicKey);
 const registration = {
   name: manifest.name,
@@ -112,21 +112,49 @@ if (dryRun || existing) {
     settlementMode: 'x402',
   });
 
-  const result = await builder.register();
-  const summary = {
-    ok: true,
-    dryRun: false,
-    sent: true,
-    publicKey: keypair.publicKey.toBase58(),
-    rpcUrl: redactRpc(config.sap.rpcUrl),
-    balanceSolBefore: balanceSol,
-    txSignature: result.txSignature,
-    agentPda: result.agentPda.toBase58(),
-    statsPda: result.statsPda.toBase58(),
-    registration,
-  };
-  await writeFile(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2));
-  console.log(JSON.stringify({ ...summary, runDir }, null, 2));
+  try {
+    const result = await builder.register();
+    const summary = {
+      ok: true,
+      dryRun: false,
+      sent: true,
+      publicKey: keypair.publicKey.toBase58(),
+      rpcUrl: redactRpc(config.sap.rpcUrl),
+      balanceSolBefore: balanceSol,
+      txSignature: result.txSignature,
+      agentPda: result.agentPda.toBase58(),
+      statsPda: result.statsPda.toBase58(),
+      registration,
+    };
+    await writeFile(path.join(runDir, 'summary.json'), JSON.stringify(summary, null, 2));
+    console.log(JSON.stringify({ ...summary, runDir }, null, 2));
+  } catch (error) {
+    let logs = error.transactionLogs || null;
+    if (!logs && typeof error.getLogs === 'function') {
+      try {
+        logs = await error.getLogs(conn.connection);
+      } catch {
+        logs = null;
+      }
+    }
+    const failure = {
+      ok: false,
+      dryRun: false,
+      sent: false,
+      publicKey: keypair.publicKey.toBase58(),
+      rpcUrl: redactRpc(config.sap.rpcUrl),
+      balanceSolBefore: balanceSol,
+      errorName: error.name,
+      errorMessage: error.message,
+      transactionMessage: error.transactionMessage || null,
+      signature: error.signature || null,
+      logs,
+      registration,
+    };
+    await writeFile(path.join(runDir, 'failure.json'), JSON.stringify(failure, null, 2));
+    console.error(JSON.stringify({ ...failure, runDir }, null, 2));
+    process.exitCode = 1;
+  }
 }
 
 function parseArgs(argv) {

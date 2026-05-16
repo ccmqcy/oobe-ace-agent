@@ -110,6 +110,34 @@ Then run:
 npm run live
 ```
 
+## SAP Mainnet Registration
+
+Generate a fresh Solana burner keypair:
+
+```bash
+npm run sap:keypair
+```
+
+Fund the printed public key with about `0.045 SOL` for SAP account rent and transaction fees, then set `SYNAPSE_RPC_URL` and `SAP_AGENT_KEYPAIR_PATH` in `.env`.
+
+Dry-run the registration payload:
+
+```bash
+npm run sap:register:dry
+```
+
+Send the SAP registration transaction:
+
+```bash
+npm run sap:register
+```
+
+Check the registered agent PDA:
+
+```bash
+npm run sap:check
+```
+
 ## Submission Assets
 
 Use these files after live verification:
