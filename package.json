@@ -1,6 +1,6 @@
 {
   "name": "oobe-ace-agent",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Autonomous SAP + AceDataCloud agent MVP for the OOBE x Ace Data Cloud Superteam bounty.",
   "main": "src/index.mjs",
   "scripts": {
@@ -27,7 +27,7 @@
     "agent"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "@acedatacloud/sdk": "^2026.504.2",
